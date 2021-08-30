@@ -2,8 +2,6 @@
 
 const Discord = require('discord.js');
 const client = new Discord.Client({ intents: ["GUILDS", "GUILD_MEMBERS", "GUILD_MESSAGES", "GUILD_PRESENCES"] });
-this.aborter = new AbortController();
-this.aborter.abort()
 const prefix = '!'
 const emb = new Discord.MessageEmbed()
     .setColor('#ff8c00')
