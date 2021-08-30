@@ -1,13 +1,8 @@
 // token ODgxNzg4NjE5MzQwMjc1Nzcy.YSx7pQ.N-DkwrwUaEO4wQRTtZgB6q1pYsw
 
-const { Client, Discord} = require('discord.js');
-const client = new Discord.Client();
+const Discord = require('discord.js');
+const client = new Discord.Client({ intents: ["GUILDS", "GUILD_MEMBERS", "GUILD_MESSAGE", "GUILD_PRESENCES"] });
 const config = require("./config.json");
-const bot = new client({
-    ws: {
-        intents: ["GUILDS", "GUILD_MEMBERS", "GUILD_MESSAGE", "GUILD_PRESENCES"]
-    }
-})
 
 client.on('message', message =>{
     if(message.author.bot) return;
