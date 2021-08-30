@@ -2,26 +2,15 @@
 
 const Discord = require('discord.js');
 const client = new Discord.Client({ intents: ["GUILDS", "GUILD_MEMBERS", "GUILD_MESSAGES", "GUILD_PRESENCES"] });
-const config = require("./config.json");
 
+const prefix = '!'
+client.on('ready', ()=>{
+    console.log('Muninn esta expandindo sua mente!');
+});
 client.on('message', message =>{
-    if(message.author.bot) return;
-    if(message.channel.type == 'DM') return;
-    if(message.content.toLowerCase().startsWith(config.prefix.toLowerCase())) return;
-    if(message.content.startsWith(`<@!${client.user.id}>`) || message.content.startsWith(`<@!${client.user.id}>`)) return;
-
-    const args = message.content
-        .trim().slice(config.prefix.lenght)
-        .split(/ +/g);
+    if(message.content.startsWith(prefix) || message.author.bot) return;
+    const args = message.content.slice(prefix.length).split(/ +/);
     const command = args.shift().toLowerCase();
-
-    try{
-        const commandsFile = require(`./comandos/${command}.js`)
-        commandsFile.run(client, message, args);
-    } catch (err) {
-        console.error('Erro:' + err);
-    }
-
 });
 
 client.login(process.env.token);
