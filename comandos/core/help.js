@@ -6,7 +6,7 @@ module.exports = {
  
     execute(client, message, args) {
         const Discord = require('discord.js');
-        if (!args[0]) {
+        if (!args[1] == " " && !args[1] == "") {
             const infos = message.client.commands.filter(x => x.category == 'Infos').map((x) => '`' + x.name + '`').join(', ');
             const music = message.client.commands.filter(x => x.category == 'Music').map((x) => '`' + x.name + '`').join(', ');
             const embh = new Discord.MessageEmbed()
