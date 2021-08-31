@@ -6,10 +6,10 @@ module.exports = {
     description: 'Entra na call e da play em um video do youtube',
     async execute(message, args) {
 
-        const voiceChannel = message.member.voice.channel
+        const voicechannel = message.member.voice.channel
   
-        if (!voiceChannel) return message.channel.send('Você precisa estar em um canal de voz para usar este comando!');
-        const permissions = voiceChannel.permissionsFor(message.client.user);
+        if (!voicechannel) return message.channel.send('Você precisa estar em um canal de voz para usar este comando!');
+        const permissions = voicechannel.permissionsFor(message.client.user);
         if (!permissions.has('CONNECT')) return message.channel.send('Você não tem permissão para isso!');
         if (!permissions.has('SPEAK')) return message.channel.send('Você não tem permissão para isso!');
         if (!args.length) return message.channel.send('Ta tentando dar play no que?');
@@ -25,12 +25,12 @@ module.exports = {
  
         if(validURL(args[0])){
  
-            const  connection = await voiceChannel.join();
+            const  connection = await voicechannel.join();
             const stream  = ytdl(args[0], {filter: 'audioonly'});
  
             connection.play(stream, {seek: 0, volume: 1})
             .on('finish', () =>{
-                voiceChannel.leave();
+                voicechannel.leave();
                 message.channel.send('leaving channel');
             });
  
@@ -40,7 +40,7 @@ module.exports = {
         }
  
         
-        const  connection = await voiceChannel.join();
+        const  connection = await voicechannel.join();
  
         const videoFinder = async (query) => {
             const videoResult = await ytSearch(query);
