@@ -1,17 +1,38 @@
 // token ODgxNzg4NjE5MzQwMjc1Nzcy.YSx7pQ.N-DkwrwUaEO4wQRTtZgB6q1pYsw
-
-const Discord = require('discord.js');
-const client = new Discord.Client({ intents: ["GUILDS", "GUILD_MEMBERS", "GUILD_MESSAGES", "GUILD_PRESENCES"] });
-const prefix = '!'
 const fs = require('fs');
+const Discord = require('discord.js');
+const client = new Discord.Client({ intents: ["GUILDS", "GUILD_MEMBERS", "GUILD_MESSAGES", "GUILD_PRESENCES"], disableMentions: 'everyone' });
+const prefix = '!'
 
+client.player = new Player(client);
+client.config = require('./config/bot');
+client.emotes = client.config.emojis;
+client.filters = client.config.filters;
 client.commands = new Discord.Collection();
 
-const commandFiles = fs.readdirSync('./comandos/').filter(file => file.endsWith('.js'));
-for(const file of commandFiles){
-    const command = require(`./comandos/${file}`);
-    client.commands.set(command.name, command);
-}
+fs.readdirSync('./comandos').forEach(dirs => {
+    const commands = fs.readdirSync(`./comandos/${dirs}`).filter(files => files.endsWith('.js'));
+
+    for (const file of commands) {
+        const command = require(`./comandos/${dirs}/${file}`);
+        console.log(`Carregando comando ${file}`);
+        client.commands.set(command.name.toLowerCase(), command);
+    };
+});
+const events = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
+const player = fs.readdirSync('./player').filter(file => file.endsWith('.js'));
+
+for (const file of events) {
+    console.log(`Loading discord.js event ${file}`);
+    const event = require(`./events/${file}`);
+    client.on(file.split(".")[0], event.bind(null, client));
+};
+
+for (const file of player) {
+    console.log(`Loading discord-player event ${file}`);
+    const event = require(`./player/${file}`);
+    client.player.on(file.split(".")[0], event.bind(null, client));
+};
 
 const emb = new Discord.MessageEmbed()
     .setColor('#ff8c00')

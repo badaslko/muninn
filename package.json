@@ -1,7 +1,7 @@
 {
   "name": "muninn",
   "version": "1.0.0",
-  "description": "",
+  "description": "Um dos corvos de Odin esta a sua espreita",
   "main": "index.js",
   "engines": {
     "node": "16.x",
@@ -15,6 +15,7 @@
   "dependencies": {
     "@discordjs/opus": "^0.6.0",
     "@discordjs/voice": "^0.6.0",
+    "discord-player": "^5.1.0",
     "discord.js": "^13.1.0",
     "ffmpeg-static": "^4.4.0",
     "yt-search": "^2.10.1",
