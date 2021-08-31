@@ -23,7 +23,7 @@ module.exports = {
         }
         if(validURL(args[0])){
  
-            const  connection = await voiceChannel.Channel.join()
+            const  connection = await voiceChannel.join()
             const stream  = ytdl(args[0], {filter: 'audioonly'});
  
             connection.play(stream, {seek: 0, volume: 1})
@@ -38,7 +38,7 @@ module.exports = {
         }
  
         
-        const  connection = await voiceChannel.channel.join();
+        const  connection = await voiceChannel.join();
  
         const videoFinder = async (query) => {
             const videoResult = await ytSearch(query);
