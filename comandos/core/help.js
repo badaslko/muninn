@@ -35,7 +35,7 @@ module.exports = {
                 { name: 'Aliase(s)', value: command.aliases.length < 1 ? 'None' : command.aliases.join(', '), inline: true },
                 { name: 'Utilizacao', value: command.utilisation.replace('{prefix}', client.config.discord.prefix), inline: true }
             )
-            .setTimestamp(Date)
+            .setTimestamp(new Date())
             message.channel.send({embhe});
         };
     },

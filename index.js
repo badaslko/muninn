@@ -60,12 +60,6 @@ client.on('message', message =>{
     
     if(command === 'cmd'){
         message.channel.send(' Aqui está a lista de comandos\n cl: Mostra o que as classes do bot <@703043558483034223> faz\n ping: Manda uma mensagem escrita "pong".\n');
-    } else if(command === 'play'){
-        client.commands.get('play').execute(message, args);
-    } else if(command === 'leave'){
-        client.commands.get('leave').execute(message, args);
-    }else if(command === 'ping'){
-        client.commands.get('ping').execute(message, args);
     }
 });
 
