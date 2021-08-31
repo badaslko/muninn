@@ -16,6 +16,8 @@ module.exports = {
         { name: 'teste', value: 'teste'},
     )
     .setFooter('Utilize *h <nome do comando> para ver o que ele faz');
-    Discord.Channel.send({ embeds: [embc] });
+
+    if (!command) return message.channel.send(`${client.emotes.error} - Este comando nao existe!`);
+    Discord.Message.send(embc)
 }
 }
