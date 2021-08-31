@@ -8,8 +8,7 @@ module.exports = {
     description: 'Entra na call e da play em um video do youtube',
     async execute(message, args) {
 
-
-        const voiceChannel = message.members.voice.channel;
+        const voiceChannel = message.member.voice.channel;
  
         if (!voiceChannel) return message.channel.send('Você precisa estar em um canal de voz para usar este comando!');
         const permissions = voiceChannel.permissionsFor(message.client.user);
