@@ -45,6 +45,8 @@ client.on('message', message =>{
         client.command.get('play').execute(message, args);
     } else if(command === 'leave'){
         client.command.get('leave').execute(message, args);
+    }else if(command === 'ping'){
+        client.command.get('ping').execute(message, args);
     }
 });
 
