@@ -1,5 +1,6 @@
 const ytdl = require('ytdl-core');
 const ytSearch = require('yt-search');
+const { Channel } = require('discord.js');
  
 module.exports = {
     name: 'play',
@@ -21,10 +22,10 @@ module.exports = {
                 return true;
             }
         }
- 
+        join = Channel.join
         if(validURL(args[0])){
  
-            const  connection = await voiceChannel.channel.join()
+            const  connection = await voiceChannel.Channel.join()
             const stream  = ytdl(args[0], {filter: 'audioonly'});
  
             connection.play(stream, {seek: 0, volume: 1})
