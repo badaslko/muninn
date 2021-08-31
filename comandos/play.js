@@ -5,7 +5,7 @@ module.exports = {
     name: 'play',
     description: 'Entra na call e da play em um video do youtube',
     async execute(message, args) {
-const { joinVoiceChannel } = require('@discord.js/voice');
+const { joinVoiceChannel } = require('@discordjs/voice');
 client.on('messageCreate', message => {
     if(message.content === '!join') {
         joinVoiceChannel({
