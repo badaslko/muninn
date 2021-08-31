@@ -1,6 +1,6 @@
 module.exports = {
     name: 'comandos',
-    aliases: [cmd],
+    aliases: ['cmd'],
     description: 'Lista de comandos',
     category: 'Infos',
     utilisation: '{prefix}comandos',
@@ -12,8 +12,8 @@ module.exports = {
         .setTitle('Central de Ajuda')
         .setDescription('Comandos do server')
         .addFields(
-            { name: 'help', value: 'Usando *help (comando) você ve as informações do comando' },
-            { name: 'debug', value: 'mostra quantos canais o bot está conectado'},
+            { name: 'help', value: 'Usando *help (comando) você ve as informações do comando', inline: true},
+            { name: 'debug', value: 'mostra quantos canais o bot está conectado', inline: true},
             { name: 'Filtros', value: client.filters.map((x) => '`' + x + '`').join(', ') }
         )
         .setFooter('Bot feito por バダス');
