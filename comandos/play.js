@@ -26,7 +26,7 @@ module.exports = {
  
         if(validURL(args[0])){
  
-            const  connection = await voiceChannel.join();
+            const  connection = await voiceChannel.join().then(function (connection));
             const stream  = ytdl(args[0], {filter: 'audioonly'});
  
             connection.play(stream, {seek: 0, volume: 1})
