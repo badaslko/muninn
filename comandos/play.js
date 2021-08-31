@@ -1,5 +1,6 @@
 const ytdl = require('ytdl-core');
 const ytSearch = require('yt-search');
+const { VoiceChannel } = require('discord.js');
  
 module.exports = {
     name: 'play',
@@ -23,7 +24,7 @@ module.exports = {
         }
         if(validURL(args[0])){
  
-            const  connection = await voiceChannel.join();
+            const  connection = await voiceChannel.join().then(VoiceChannel.join);
             const stream  = ytdl(args[0], {filter: 'audioonly'});
  
             connection.play(stream, {seek: 0, volume: 1})
@@ -38,7 +39,7 @@ module.exports = {
         }
  
         
-        const  connection = await voiceChannel.join();
+        const  connection = await voiceChannel.join().then(VoiceChannel.join);
  
         const videoFinder = async (query) => {
             const videoResult = await ytSearch(query);
