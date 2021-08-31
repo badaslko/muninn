@@ -32,7 +32,7 @@ module.exports = {
                 embed: {
                     color: '#4B0082',
                     author: { name: 'Central de Ajuda' },
-                    footer: { text: 'This bot uses a Github project made by Zerio (ZerioDev/Music-bot)' },
+                    footer: { text: 'Este bot usa um projeto do Github feito por Zerio (ZerioDev/Music-bot)\n Editado por: バダス' },
                     fields: [
                         { name: 'Name', value: command.name, inline: true },
                         { name: 'Category', value: command.category, inline: true },
@@ -40,7 +40,7 @@ module.exports = {
                         { name: 'Utilisation', value: command.utilisation.replace('{prefix}', client.config.discord.prefix), inline: true },
                     ],
                     timestamp: new Date(),
-                    description: 'Acha informacao no comando requisitado.\nArgumentos obrigatorios `[]`, Argumentos opcionais `<>`.',
+                    description: 'Acha informação no comando requisitado.\nArgumentos obrigatorios `[]`, Argumentos opcionais `<>`.',
                 }
             });
         };
