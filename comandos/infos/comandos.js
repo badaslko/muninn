@@ -16,6 +16,6 @@ module.exports = {
         { name: 'teste', value: 'teste'},
     )
     .setFooter('Utilize *h <nome do comando> para ver o que ele faz');
-        message.channel.send({embc});
+    channel.send({ embeds: [embc] });
 }
 }
