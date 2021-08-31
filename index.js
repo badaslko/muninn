@@ -42,11 +42,11 @@ client.on('message', message =>{
     } else if(command === 'embed'){
         message.channel.send(emb);
     } else if(command === 'play'){
-        client.command.get('play').execute(message, args);
+        client.commands.get('play').execute(message, args);
     } else if(command === 'leave'){
-        client.command.get('leave').execute(message, args);
+        client.commands.get('leave').execute(message, args);
     }else if(command === 'ping'){
-        client.command.get('ping').execute(message, args);
+        client.commands.get('ping').execute(message, args);
     }
 });
 
