@@ -3,16 +3,6 @@
 const Discord = require('discord.js');
 const client = new Discord.Client({ intents: ["GUILDS", "GUILD_MEMBERS", "GUILD_MESSAGES", "GUILD_PRESENCES"] });
 const prefix = '!'
-const { joinVoiceChannel } = require('@discordjs/voice');
-client.on('messageCreate', message => {
-    if(message.content === '!join') {
-        joinVoiceChannel({
-            channelId: message.member.voice.channel.id,
-            guildId: message.guild.id,
-            adapterCreator: message.guild.voiceAdapterCreator
-        })
-    }
-})
 const fs = require('fs');
 
 client.commands = new Discord.Collection();
