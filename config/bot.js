@@ -10,7 +10,7 @@ module.exports = {
     discord: {
         token: 'ODgxNzg4NjE5MzQwMjc1Nzcy.YSx7pQ.cb_Br1bMhE1QHJwdWTfbAU7Vhw4',
         prefix: '!',
-        activity: 'ACTIVITY',
+        activity: 'Trazendo informações para Odin',
     },
 
     filters: ['8D', 'gate', 'haas', 'phaser', 'treble', 'tremolo', 'vibrato', 'reverse', 'karaoke', 'flanger', 'mcompand', 'pulsator', 'subboost', 'bassboost', 'vaporwave', 'nightcore', 'normalizer', 'surrounding'],
