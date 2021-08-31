@@ -1,12 +1,8 @@
-module.exports.run = async(client, message, args) =>{
-    const prefix = '!'
-    client.on('message', message =>{
-        if(message.content.startsWith(prefix) || message.author.bot) return;
-        const args = message.content.slice(prefix.length).split(/ +/);
-        const command = args.shift().toLowerCase();
+module.exports = {
+    name: 'ping',
+    description: "Este e um comando de ping pong!",
+    execute(message, args){
+        message.channel.send('pong!');
+    }
 
-        if(command === 'ping'){
-            message.channel.send('Pong')
-        }
-    });
-};
+}
