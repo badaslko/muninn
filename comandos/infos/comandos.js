@@ -16,7 +16,8 @@ module.exports = {
         { name: 'teste', value: 'teste'},
     )
     .setFooter('Utilize *h <nome do comando> para ver o que ele faz');
-
+    
+    const command = message.client.commands.get(args.join(" ").toLowerCase()) || message.client.commands.find(x => x.aliases && x.aliases.includes(args.join(" ").toLowerCase()));
     if (!command) return message.channel.send(`${client.emotes.error} - Este comando nao existe!`);
     Discord.Message.send(embc)
 }
