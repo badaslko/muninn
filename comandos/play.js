@@ -7,11 +7,11 @@ module.exports = {
     async execute(message, args) {
         const voiceChannel = message.member.voice.channel;
  
-        if (!voiceChannel) return message.channel.send('You need to be in a channel to execute this command!');
+       if (!voiceChannel) return message.channel.send('Você precisa estar em um canal de voz para usar este comando!');
         const permissions = voiceChannel.permissionsFor(message.client.user);
-        if (!permissions.has('CONNECT')) return message.channel.send('You dont have the correct permissins');
-        if (!permissions.has('SPEAK')) return message.channel.send('You dont have the correct permissins');
-        if (!args.length) return message.channel.send('You need to send the second argument!');
+        if (!permissions.has('CONNECT')) return message.channel.send('Você não tem as permissões para isso');
+        if (!permissions.has('SPEAK')) return message.channel.send('Você não tem as permissões para isso');
+        if (!args.length) return message.channel.send('Ta tendando dar play no nada? Coloca algo ai!');
  
         const validURL = (str) =>{
             var regex = /(http|https):\/\/(\w+:{0,1}\w*)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;
