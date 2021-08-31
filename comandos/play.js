@@ -9,7 +9,7 @@ module.exports = {
     async execute(message, args) {
 
 
-        const voiceChannel = message.member.channel.voice;
+        const voiceChannel = message.members.voice.channel;
  
         if (!voiceChannel) return message.channel.send('Você precisa estar em um canal de voz para usar este comando!');
         const permissions = voiceChannel.permissionsFor(message.client.user);
