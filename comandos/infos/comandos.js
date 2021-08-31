@@ -16,6 +16,6 @@ module.exports = {
         { name: 'teste', value: 'teste'},
     )
     .setFooter('Utilize *h <nome do comando> para ver o que ele faz');
-    channel.send({ embeds: [embc] });
+    Discord.Channel.send({ embeds: [embc] });
 }
 }
