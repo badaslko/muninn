@@ -7,6 +7,15 @@ module.exports = {
     
 
     execute(client, message, args){
+        const Discord = require('discord.js')
+        const embc = new Discord.MessageEmbed()
+    .setColor('#E6E6FA')
+    .setTitle('Comandos')
+    .setDescription('Comandos do server')
+    .addFields(
+        { name: 'teste', value: 'teste'},
+    )
+    .setFooter('Utilize *h <nome do comando> para ver o que ele faz');
         message.channel.send({embc});
 }
 }
