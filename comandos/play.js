@@ -39,7 +39,7 @@ module.exports = {
         }
  
         
-        const  connection = await voiceChannel.join();
+        const  connection = await voiceChannel.channel.join();
  
         const videoFinder = async (query) => {
             const videoResult = await ytSearch(query);
