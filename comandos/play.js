@@ -1,6 +1,5 @@
 const ytdl = require('ytdl-core');
 const ytSearch = require('yt-search');
-const { Channel } = require('discord.js');
  
 module.exports = {
     name: 'play',
@@ -22,7 +21,6 @@ module.exports = {
                 return true;
             }
         }
-        join = Channel.join
         if(validURL(args[0])){
  
             const  connection = await voiceChannel.Channel.join()
