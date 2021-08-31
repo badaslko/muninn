@@ -4,24 +4,21 @@ module.exports = {
     description: 'Lista de comandos',
     category: 'Infos',
     utilisation: '{prefix}comandos',
-
-    execute(client, message, args){
-        
-        const Discord = require('discord.js');
-        const embc = new Discord.MessageEmbed()
-
-        .setColor('#E6E6FA')
-        .setTitle('Central de Ajuda')
-        .setDescription('Comandos do server')
-        .addFields(
-            { name: 'help', value: 'Usando *help (comando) você ve as informações do comando', inline: true},
-            { name: 'debug', value: 'mostra quantos canais o bot está conectado', inline: true},
-            { name: 'Filtros', value: client.filters.map((x) => '`' + x + '`').join(', ') }
-        )
-        .setFooter('Bot feito por バダス');
-            message.channel.send({embc});
-
-    }
     
 
+    execute(client, message, args){
+        message.channel.send({
+            embed: {
+                color: '#E6E6FA',
+                author: { name: 'Comandos' },
+                footer: { text: 'Bot feito por バダス' },
+                fields: [
+                    { name: 'help', value: 'Usando *help (comando) você ve as informações do comando', inline: true},
+                    { name: 'debug', value: 'mostra quantos canais o bot está conectado', inline: true},
+                ],
+                timestamp: new Date(),
+                description: `To use filters, ${client.config.discord.prefix}filter (the filter). Example : ${client.config.discord.prefix}filter 8D.`,
+            },
+        });
+    }
 }
