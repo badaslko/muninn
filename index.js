@@ -3,6 +3,17 @@
 const Discord = require('discord.js');
 const client = new Discord.Client({ intents: ["GUILDS", "GUILD_MEMBERS", "GUILD_MESSAGES", "GUILD_PRESENCES"] });
 const prefix = '!'
+
+const fs = require('fs');
+
+client.commands = new Discord.Collection();
+
+const commandFiles = fs.readdirSync('./comandos/').filter(file => file.endsWith('.js'));
+for(const file of commandFiles){
+    const command = require(`./comandos/${file}`);
+    client.command.set(command.name, command);
+}
+
 const emb = new Discord.MessageEmbed()
     .setColor('#ff8c00')
     .setTitle('Classes')
@@ -26,12 +37,14 @@ client.on('message', message =>{
     const args = message.content.slice(prefix.length).split(/ +/);
     const command = args.shift().toLowerCase();
     
-    if(command === 'ping'){
-        message.channel.send('pong!');
-    } else if(command === 'cmd'){
+    if(command === 'cmd'){
         message.channel.send(' Aqui está a lista de comandos\n cl: Mostra o que as classes do bot <@703043558483034223> faz\n ping: Manda uma mensagem escrita "pong".\n');
     } else if(command === 'embed'){
         message.channel.send(emb);
+    } else if(command === 'play'){
+        client.command.get('play').execute(message, args);
+    } else if(command === 'leave'){
+        client.command.get('leave').execute(message, args);
     }
 });
 
