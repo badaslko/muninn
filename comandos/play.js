@@ -5,6 +5,16 @@ module.exports = {
     name: 'play',
     description: 'Entra na call e da play em um video do youtube',
     async execute(message, args) {
+        const { joinVoiceChannel } = require('@discord.js/voice');
+    client.on('messageCreate', message => {
+    if(message.content === '!join') {
+        joinVoiceChannel({
+            channelId: message.member.voice.channel.id,
+            guildId: message.guild.id,
+            adapterCreator: message.guild.voiceAdapterCreator
+        })
+    }
+})
         const voiceChannel = message.member.voice.channel;
  
         if (!voiceChannel) return message.channel.send('Você precisa estar em um canal de voz para usar este comando!');
