@@ -6,8 +6,10 @@ module.exports = {
     utilisation: '{prefix}comandos',
 
     execute(client, message, args){
+        
         const Discord = require('discord.js');
-        const embc = new Discord.MessageEmbed
+        const embc = new Discord.MessageEmbed()
+
         .setColor('#E6E6FA')
         .setTitle('Central de Ajuda')
         .setDescription('Comandos do server')
