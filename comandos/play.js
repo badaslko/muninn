@@ -6,7 +6,7 @@ module.exports = {
     name: 'play',
     description: 'Joins and plays a video from youtube',
     async execute(message, args) {
-        const voiceChannel = message.member.voice.channel;
+        const voiceChannel = message.author.voice.channel;
  
        if (!voiceChannel) return message.channel.send('Você precisa estar em um canal de voz para usar este comando!');
         const permissions = voiceChannel.permissionsFor(message.client.user);
