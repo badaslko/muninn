@@ -4,8 +4,9 @@ module.exports = {
     category: 'Core',
     utilisation: '{prefix}help <command name>',
  
-    execute(client, message, args) {        
-
+    execute(client, message, args) {
+        const Discord = require('discord.js');
+        const client = new Discord.Client({ intents: ["GUILDS", "GUILD_MEMBERS", "GUILD_MESSAGES", "GUILD_PRESENCES", "GUILD_VOICE_STATES"], disableMentions: 'everyone' });
         if (!args[0]) {
             const infos = message.client.commands.filter(x => x.category == 'Infos').map((x) => '`' + x.name + '`').join(', ');
             const music = message.client.commands.filter(x => x.category == 'Music').map((x) => '`' + x.name + '`').join(', ');
