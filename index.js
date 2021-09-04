@@ -37,7 +37,6 @@ client.player
     // Emitted when a song was added to the queue.
     .on('songAdd',  (queue, song) =>
         console.log(`Song ${song} was added to the queue.`))
-        MessageChannel.send('1')
     // Emitted when a playlist was added to the queue.
     .on('playlistAdd',  (queue, playlist) =>
         console.log(`Playlist ${playlist} with ${playlist.songs.length} was added to the queue.`))
@@ -77,6 +76,7 @@ client.on('messageCreate', async (message) => {
             }
         });
         await queue.join(message.member.voice.channel);
+        message.channel.send('Song ${song} was added to the queue.')
         let song = await queue.play(args.join(' ')).catch(_ => {
             if(!guildQueue)
                 queue.stop();
