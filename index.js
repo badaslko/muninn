@@ -91,7 +91,7 @@ client.on('messageCreate', async (message) => {
         });
     }
     if(command === 'queue' || 'q'){
-        guildQueue.songs()
+        guildQueue.songs(); 
     }
 
     if(command === 'skip') {
@@ -118,7 +118,7 @@ client.on('messageCreate', async (message) => {
         guildQueue.setVolume(parseInt(args[0]));
     }
 
-    if(command === 'seek') {
+    if(command === 'jump') {
         guildQueue.seek(parseInt(args[0]) * 1000);
     }
 
