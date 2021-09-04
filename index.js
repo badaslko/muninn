@@ -91,7 +91,7 @@ client.on('messageCreate', async (message) => {
         });
     }
     if(command === 'queue' || 'q'){
-        guildQueue.data()
+        guildQueue.songs()
     }
 
     if(command === 'skip') {
