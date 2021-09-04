@@ -13,9 +13,6 @@ client.emotes = client.config.emojis;
 client.filters = client.config.filters;
 client.commands = new Discord.Collection();
 
-const emb = new Discord.MessageEmbed()
-    .setColor('LUMINOUS_VIVID_PINK')
-    .setTitle(`A musica ${song} foi adicionada`)
 
 fs.readdirSync('./comandos').forEach(dirs => {
     const commands = fs.readdirSync(`./comandos/${dirs}`).filter(files => files.endsWith('.js'));
@@ -79,7 +76,7 @@ client.on('messageCreate', async (message) => {
             }
         });
         await queue.join(message.member.voice.channel);
-        message.channel.send(emb)
+        message.channel.send(`A musica ${song} foi adicionada!`)
         let song = await queue.play(args.join(' ')).catch(_ => {
             if(!guildQueue)
                 queue.stop();
@@ -92,6 +89,9 @@ client.on('messageCreate', async (message) => {
             if(!guildQueue)
                 queue.stop();
         });
+    }
+    if(command === 'queue' || 'q'){
+        guildQueue.getQueue()
     }
 
     if(command === 'skip') {
