@@ -7,12 +7,15 @@ const { Player } = require("discord-music-player");
 const player = new Player(client, {
     leaveOnEmpty: false, // This options are optional.
 });
-
 client.player = player
 client.config = require('./config/bot');
 client.emotes = client.config.emojis;
 client.filters = client.config.filters;
 client.commands = new Discord.Collection();
+
+const emb = new Discord.MessageEmbed()
+    .setColor('LUMINOUS_VIVID_PINK')
+    .setTitle(`A musica ${song} foi adicionada`)
 
 fs.readdirSync('./comandos').forEach(dirs => {
     const commands = fs.readdirSync(`./comandos/${dirs}`).filter(files => files.endsWith('.js'));
@@ -76,7 +79,7 @@ client.on('messageCreate', async (message) => {
             }
         });
         await queue.join(message.member.voice.channel);
-        message.channel.send('Song ${song} was added to the queue.')
+        message.channel.send(emb)
         let song = await queue.play(args.join(' ')).catch(_ => {
             if(!guildQueue)
                 queue.stop();
