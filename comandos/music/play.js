@@ -11,7 +11,6 @@ module.exports = {
 
         if (!args[0]) return message.channel.send(`${client.emotes.error} - Please indicate the title of a song !`);
 
-    const args = message.content.slice(prefix.length).trim().split(/ +/g);
     const command = args.shift();
     let guildQueue = client.player.getQueue(message.guild.id);
 
@@ -22,6 +21,8 @@ module.exports = {
             if(!guildQueue)
                 queue.stop();
         });
+    } else{
+
     }
     },
 };
