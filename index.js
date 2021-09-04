@@ -68,6 +68,13 @@ client.on('messageCreate', async (message) => {
 
     if(command === 'play') {
         let queue = client.player.createQueue(message.guild.id);
+        await player.createQueue(message.guild.id, {
+            data: {
+                queueInitMessage: message,
+                myObject: 'this will stay with the queue :)',
+                more: 'add more... there are no limitations...'
+            }
+        });
         await queue.join(message.member.voice.channel);
         let song = await queue.play(args.join(' ')).catch(_ => {
             if(!guildQueue)
