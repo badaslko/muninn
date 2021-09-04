@@ -28,6 +28,7 @@ client.once('ready', () => {
     console.log('Muninn esta expandindo sua mente!');
 });
 const { RepeatMode } = require('discord-music-player');
+const { discord } = require('./config/bot');
 
 client.on('messageCreate', async (message) => {
     let guildQueue = client.player.getQueue(message.guild.id);
