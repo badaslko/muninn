@@ -10,8 +10,8 @@ module.exports = {
         if (message.guild.me.voice.channel && message.member.voice.channel.id !== message.guild.me.voice.channel.id) return message.channel.send(`${client.emotes.error} - You are not in the same voice channel !`);
 
         if (!args[0]) return message.channel.send(`${client.emotes.error} - Please indicate the title of a song !`);
-
-    const command = args.shift();
+        const args = message.content.slice(prefix.length).trim().split(/ +/g);
+        const command = args.shift();
     let guildQueue = client.player.getQueue(message.guild.id);
 
     if(command === 'play') {
