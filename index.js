@@ -33,9 +33,12 @@ client.player
     // Emitted when channel was empty.
     .on('channelEmpty',  (queue) =>
         console.log(`Everyone left the Voice Channel, queue ended.`))
+        message.channel.send(`Everyone left the Voice Channel, queue ended.`)
     // Emitted when a song was added to the queue.
     .on('songAdd',  (queue, song) =>
         console.log(`Song ${song} was added to the queue.`))
+        MessageChannel.send('1')
+        message.channel.send('2')
     // Emitted when a playlist was added to the queue.
     .on('playlistAdd',  (queue, playlist) =>
         console.log(`Playlist ${playlist} with ${playlist.songs.length} was added to the queue.`))
@@ -65,7 +68,21 @@ client.on('messageCreate', async (message) => {
 
     const args = message.content.slice(prefix.length).split(/ +/);
     const command = args.shift().toLowerCase();
-    
+    if(command === 'play' || 'p') {
+        let queue = client.player.createQueue(message.guild.id);
+        await player.createQueue(message.guild.id, {
+            data: {
+                queueInitMessage: message,
+                myObject: 'this will stay with the queue :)',
+                more: 'add more... there are no limitations...'
+            }
+        });
+        await queue.join(message.member.voice.channel);
+        let song = await queue.play(args.join(' ')).catch(_ => {
+            if(!guildQueue)
+                queue.stop();
+        });
+    }
     if(command === 'playlist') {
         let queue = client.player.createQueue(message.guild.id);
         await queue.join(message.member.voice.channel);
