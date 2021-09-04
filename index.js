@@ -3,9 +3,12 @@ const fs = require('fs');
 const Discord = require('discord.js');
 const client = new Discord.Client({ intents: ["GUILDS", "GUILD_MEMBERS", "GUILD_MESSAGES", "GUILD_PRESENCES", "GUILD_VOICE_STATES"], disableMentions: 'everyone' });
 const prefix = '*'
-const { Player } = require('discord-player');
+const { Player } = require("discord-music-player");
+const player = new Player(client, {
+    leaveOnEmpty: false, // This options are optional.
+});
 
-client.player = new Player(client);
+client.player = player
 client.config = require('./config/bot');
 client.emotes = client.config.emojis;
 client.filters = client.config.filters;
@@ -20,19 +23,102 @@ fs.readdirSync('./comandos').forEach(dirs => {
         client.commands.set(command.name.toLowerCase(), command);
     };
 });
-
-const embc = new Discord.MessageEmbed()
-    .setColor('#E6E6FA')
-    .setTitle('Comandos')
-    .setDescription('Comandos do server')
-    .addFields(
-        { name: 'teste', value: 'teste'},
-    )
-    .setFooter('Utilize *h <nome do comando> para ver o que ele faz');
     
 client.once('ready', () => {
     console.log('Muninn esta expandindo sua mente!');
 });
+const { RepeatMode } = require('discord-music-player');
+
+client.on('messageCreate', async (message) => {
+    const args = message.content.slice(settings.prefix.length).trim().split(/ +/g);
+    const command = args.shift();
+    let guildQueue = client.player.getQueue(message.guild.id);
+
+    if(command === 'play') {
+        let queue = client.player.createQueue(message.guild.id);
+        await queue.join(message.member.voice.channel);
+        let song = await queue.play(args.join(' ')).catch(_ => {
+            if(!guildQueue)
+                queue.stop();
+        });
+    }
+
+    if(command === 'playlist') {
+        let queue = client.player.createQueue(message.guild.id);
+        await queue.join(message.member.voice.channel);
+        let song = await queue.playlist(args.join(' ')).catch(_ => {
+            if(!guildQueue)
+                queue.stop();
+        });
+    }
+
+    if(command === 'skip') {
+        guildQueue.skip();
+    }
+
+    if(command === 'stop') {
+        guildQueue.stop();
+    }
+
+    if(command === 'removeLoop') {
+        guildQueue.setRepeatMode(RepeatMode.DISABLED); // or 0 instead of RepeatMode.DISABLED
+    }
+
+    if(command === 'toggleLoop') {
+        guildQueue.setRepeatMode(RepeatMode.SONG); // or 1 instead of RepeatMode.SONG
+    }
+
+    if(command === 'toggleQueueLoop') {
+        guildQueue.setRepeatMode(RepeatMode.QUEUE); // or 2 instead of RepeatMode.QUEUE
+    }
+
+    if(command === 'setVolume') {
+        guildQueue.setVolume(parseInt(args[0]));
+    }
+
+    if(command === 'seek') {
+        guildQueue.seek(parseInt(args[0]) * 1000);
+    }
+
+    if(command === 'clearQueue') {
+        guildQueue.clearQueue();
+    }
+
+    if(command === 'shuffle') {
+        guildQueue.shuffle();
+    }
+
+    if(command === 'getQueue') {
+        console.log(guildQueue);
+    }
+
+    if(command === 'getVolume') {
+        console.log(guildQueue.volume)
+    }
+
+    if(command === 'nowPlaying') {
+        console.log(`Now playing: ${guildQueue.nowPlaying}`);
+    }
+
+    if(command === 'pause') {
+        guildQueue.setPaused(true);
+    }
+
+    if(command === 'resume') {
+        guildQueue.setPaused(false);
+    }
+
+    if(command === 'remove') {
+        guildQueue.remove(parseInt(args[0]));
+    }
+
+    if(command === 'createProgressBar') {
+        const ProgressBar = guildQueue.createProgressBar();
+        
+        // [======>              ][00:35/2:20]
+        console.log(ProgressBar.prettier);
+    }
+})
 client.on('message', message =>{
     if(!message.content.startsWith(prefix) || message.author.bot) return;
 
