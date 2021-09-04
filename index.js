@@ -29,16 +29,17 @@ client.once('ready', () => {
 });
 const { RepeatMode } = require('discord-music-player');
 const { discord } = require('./config/bot');
+
 client.player
     // Emitted when channel was empty.
     .on('channelEmpty',  (queue) =>
         console.log(`Everyone left the Voice Channel, queue ended.`))    
-        Discord.Message.channel.send(`Everyone left the Voice Channel, queue ended.`)
+        Discord.Message.send(`Everyone left the Voice Channel, queue ended.`)
     // Emitted when a song was added to the queue.
     .on('songAdd',  (queue, song) =>
         console.log(`Song ${song} was added to the queue.`))
         MessageChannel.send('1')
-        Discord.Message.channel.send(`2`)
+        Discord.Message.send(`2`)
     // Emitted when a playlist was added to the queue.
     .on('playlistAdd',  (queue, playlist) =>
         console.log(`Playlist ${playlist} with ${playlist.songs.length} was added to the queue.`))
