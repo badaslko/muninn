@@ -77,7 +77,6 @@ client.on('messageCreate', async (message) => {
         });
         await queue.join(message.member.voice.channel);       
         let song = await queue.play(args.join(' ')).catch(_ => {
-            message.channel.send(`A musica ${song} foi adicionada!`)
             if(!guildQueue)
                 queue.stop();
         });
