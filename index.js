@@ -75,9 +75,9 @@ client.on('messageCreate', async (message) => {
                 more: 'add more... there are no limitations...'
             }
         });
-        await queue.join(message.member.voice.channel);
-        message.channel.send(`A musica ${song} foi adicionada!`)
+        await queue.join(message.member.voice.channel);       
         let song = await queue.play(args.join(' ')).catch(_ => {
+            message.channel.send(`A musica ${song} foi adicionada!`)
             if(!guildQueue)
                 queue.stop();
         });
@@ -91,7 +91,7 @@ client.on('messageCreate', async (message) => {
         });
     }
     if(command === 'queue' || 'q'){
-        guildQueue.getQueue()
+        guildQueue.data()
     }
 
     if(command === 'skip') {
