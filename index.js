@@ -91,6 +91,7 @@ client.on('messageCreate', async (message) => {
         });
     }
     if(command === 'queue' || 'q'){
+        let queue = client.player.createQueue(message.guild.id);
         guildQueue.songs(); 
     }
 
