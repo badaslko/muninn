@@ -32,7 +32,11 @@ const { discord } = require('./config/bot');
 
 client.on('messageCreate', async (message) => {
     let guildQueue = client.player.getQueue(message.guild.id);
+    if(!message.content.startsWith(prefix) || message.author.bot) return;
 
+    const args = message.content.slice(prefix.length).split(/ +/);
+    const command = args.shift().toLowerCase();
+    
 
     if(command === 'playlist') {
         let queue = client.player.createQueue(message.guild.id);
