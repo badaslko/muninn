@@ -78,14 +78,14 @@ client.on('messageCreate', async (message) => {
         await queue.join(message.member.voice.channel);       
         let song = await queue.play(args.join(' ')).catch(_ => 
             {
-                const embs = new Discord.MessageEmbed()
+            if(!guildQueue)
+            queue.stop();
+            const embs = new Discord.MessageEmbed()
             .setColor('#5c0085')
             .addFields(
                 { name: `${song}`, value: message.author}
             )            
             message.channel.send({ embeds: [embs]})
-            if(!guildQueue)
-            queue.stop();
             }); 
     }else if(command === 'playlist') {
         let queue = client.player.createQueue(message.guild.id);
