@@ -63,7 +63,12 @@ client.player
 client.on('messageCreate', async (message) => {
     let guildQueue = client.player.getQueue(message.guild.id);
     if(!message.content.startsWith(prefix) || message.author.bot) return;
-
+    const embs = new Discord.MessageEmbed()
+    .setColor('#5c0085')
+    .addFields(
+        { name: `${Song}`, value: message.author}
+    )            
+    message.channel.send({ embeds: [embs]})
     const args = message.content.slice(prefix.length).split(/ +/);
     const command = args.shift().toLowerCase();
     if(command=== 'teste'){
@@ -75,12 +80,6 @@ client.on('messageCreate', async (message) => {
             {
             if(!guildQueue)
             queue.stop();
-            const embs = new Discord.MessageEmbed()
-            .setColor('#5c0085')
-            .addFields(
-                { name: `${song}`, value: message.author}
-            )            
-            message.channel.send({ embeds: [embs]})
             }); 
     }else if(command === 'playlist') {
         let queue = client.player.createQueue(message.guild.id);
