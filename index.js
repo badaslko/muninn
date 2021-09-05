@@ -66,25 +66,18 @@ client.on('messageCreate', async (message) => {
     const args = message.content.slice(prefix.length).split(/ +/);
     const command = args.shift().toLowerCase();
     if(command === 'play' || 'p') {
-        let queue = client.player.createQueue(message.guild.id);
-        await player.createQueue(message.guild.id, {
-            data: {
-                queueInitMessage: message,
-                myObject: 'this will stay with the queue :)',
-                more: 'add more... there are no limitations...'
-            }
-        });
+        let queue = client.player.createQueue(message.guild.id);        
         await queue.join(message.member.voice.channel);       
-        let song = await queue.play(args.join(' ')).catch(_ => {
+        let song = await queue.play(args.join(' ')).catch(_ => 
+            {
 
             if(!guildQueue)
-                queue.stop();       
-                message.channel.send(` A musica ${song} foi adicionada`)
-         
-        });
+            message.channel.send(` A musica ${song} foi adicionada`)
+                queue.stop();
+            });
 
     }
-    if(command === 'playlist') {
+    if(command === 'play' || 'playlist' || 'p') {
         let queue = client.player.createQueue(message.guild.id);
         await queue.join(message.member.voice.channel);
         let song = await queue.playlist(args.join(' ')).catch(_ => {
@@ -101,8 +94,8 @@ client.on('messageCreate', async (message) => {
     }
 
     if(command === 'stop') {
-        guildQueue.stop();
         message.channel.send('A musica foi interrompida')
+        guildQueue.stop();
     }
 
     if(command === 'removeLoop') {
