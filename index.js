@@ -14,9 +14,12 @@ client.emotes = client.config.emojis;
 client.commands = new Discord.Collection();
 embt = new Discord.MessageEmbed()
         .setColor('BLURPLE')
-        .addField(
+        .setTitle('teste')
+        .setDescription('teste')
+        .addFields(
             {  name: 'teste', value:'teste'}
             )
+        .setFooter('teste');
 
 fs.readdirSync('./comandos').forEach(dirs => {
     const commands = fs.readdirSync(`./comandos/${dirs}`).filter(files => files.endsWith('.js'));
