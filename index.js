@@ -75,9 +75,7 @@ client.on('messageCreate', async (message) => {
     const cmd = args.shift().toLowerCase();
     if(cmd === 'teste'){
         message.channel.send(embt);
-    }
-   
-    if(command === 'play' || 'p') {        
+    }else if(command === 'play' || 'p') {        
         let queue = client.player.createQueue(message.guild.id);        
         await queue.join(message.member.voice.channel);       
         let song = await queue.play(args.join(' ')).catch(_ => 
@@ -85,81 +83,47 @@ client.on('messageCreate', async (message) => {
             if(!guildQueue)
             queue.stop();
             });
-    };
-    if(command === 'playlist') {
+    }else if(command === 'playlist') {
         let queue = client.player.createQueue(message.guild.id);
         await queue.join(message.member.voice.channel);
         let song = await queue.playlist(args.join(' ')).catch(_ => {
             if(!guildQueue)
                 queue.stop();
-        });
-    }
-    if(command === 'queue' || 'q'){   
+        })
+    }else if(command === 'queue' || 'q'){   
 
-    }
-
-    if(command === 'skip') {
+    }else if(command === 'skip') {
         guildQueue.skip();
-    }
-
-    if(command === 'stop') {
+    }else if(command === 'stop') {
         message.channel.send('A musica foi interrompida')
         guildQueue.stop();
-    }
-
-    if(command === 'removeLoop') {
+    }else if(command === 'removeLoop') {
         guildQueue.setRepeatMode(RepeatMode.DISABLED); // or 0 instead of RepeatMode.DISABLED
-    }
-
-    if(command === 'toggleLoop') {
+    }else if(command === 'toggleLoop') {
         guildQueue.setRepeatMode(RepeatMode.SONG); // or 1 instead of RepeatMode.SONG
-    }
-
-    if(command === 'toggleQueueLoop') {
+    }else if(command === 'toggleQueueLoop') {
         guildQueue.setRepeatMode(RepeatMode.QUEUE); // or 2 instead of RepeatMode.QUEUE
-    }
-
-    if(command === 'setVolume') {
+    }else if(command === 'setVolume') {
         guildQueue.setVolume(parseInt(args[0]));
-    }
-
-    if(command === 'jump') {
+    }else if(command === 'jump') {
         guildQueue.seek(parseInt(args[0]) * 1000);
-    }
-
-    if(command === 'clearQueue') {
+    }else if(command === 'clearQueue') {
         guildQueue.clearQueue();
-    }
-
-    if(command === 'shuffle') {
+    }else if(command === 'shuffle') {
         guildQueue.shuffle();
-    }
-
-    if(command === 'getQueue') {
+    }else if(command === 'getQueue') {
         console.log(guildQueue);
-    }
-
-    if(command === 'getVolume') {
+    }else if(command === 'getVolume') {
         console.log(guildQueue.volume)
-    }
-
-    if(command === 'nowPlaying') {
+    }else if(command === 'nowPlaying') {
         console.log(`Now playing: ${guildQueue.nowPlaying}`);
-    }
-
-    if(command === 'pause') {
+    }else if(command === 'pause') {
         guildQueue.setPaused(true);
-    }
-
-    if(command === 'resume') {
+    }else if(command === 'resume') {
         guildQueue.setPaused(false);
-    }
-
-    if(command === 'remove') {
+    }else if(command === 'remove') {
         guildQueue.remove(parseInt(args[0]));
-    }
-
-    if(command === 'createProgressBar') {
+    }else if(command === 'createProgressBar') {
         const ProgressBar = guildQueue.createProgressBar();
         
         // [======>              ][00:35/2:20]
