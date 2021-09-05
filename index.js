@@ -7,10 +7,10 @@ const { Player, Song, Queue } = require("discord-music-player");
 const player = new Player(client, {
     leaveOnEmpty: false, // This options are optional.
 });
+const queue = new Queue(client);
 client.player = player
 client.config = require('./config/bot');
 client.emotes = client.config.emojis;
-client.filters = client.config.filters;
 client.commands = new Discord.Collection();
 
 
