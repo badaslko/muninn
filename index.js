@@ -79,15 +79,15 @@ client.on('messageCreate', async (message) => {
     }else if(command === 'playlist') {
         let queue = client.player.createQueue(message.guild.id);
         await queue.join(message.member.voice.channel);
-        let song = await queue.playlist(args.join(' ')).catch(_ => {
-    const embs = new Discord.MessageEmbed()
-        .setColor('#5c0085')
-        .addFields(
-            { name: ``, value: message.author}
-        )            
+        let song = await queue.playlist(args.join(' ')).catch(_ => {    
             if(!guildQueue)
                 queue.stop();
-        })   
+        })  
+        const embs = new Discord.MessageEmbed()
+        .setColor('#5c0085')
+        .addFields(
+            { name: `${song}`, value: message.author}
+        )            
 
         message.channel.send({ embeds: [embs]})
     }else if(command === 'queue' || 'q'){   
