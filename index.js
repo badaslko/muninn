@@ -66,6 +66,7 @@ client.on('messageCreate', async (message) => {
     const args = message.content.slice(prefix.length).split(/ +/);
     const command = args.shift().toLowerCase();
     if(command === 'play' || 'p') {
+        message.channel.send(` A musica ${song} foi adicionada`)
         let queue = client.player.createQueue(message.guild.id);        
         await queue.join(message.member.voice.channel);       
         let song = await queue.play(args.join(' ')).catch(_ => 
@@ -73,7 +74,6 @@ client.on('messageCreate', async (message) => {
             if(!guildQueue)
             queue.stop();
             });
-            message.channel.send(` A musica teste foi adicionada`)
     };
     if(command === 'playlist') {
         let queue = client.player.createQueue(message.guild.id);
