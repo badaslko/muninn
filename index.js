@@ -3,15 +3,20 @@ const fs = require('fs');
 const Discord = require('discord.js');
 const client = new Discord.Client({ intents: ["GUILDS", "GUILD_MEMBERS", "GUILD_MESSAGES", "GUILD_PRESENCES", "GUILD_VOICE_STATES"], disableMentions: 'everyone' });
 const prefix = '*'
-const { Player, Song} = require("discord-music-player");
+const { Player, Song, Queue} = require("discord-music-player");
 const player = new Player(client, {
     leaveOnEmpty: false, // This options are optional.
 });
+const queue = new Queue(player)
 client.player = player
 client.config = require('./config/bot');
 client.emotes = client.config.emojis;
 client.commands = new Discord.Collection();
-
+embt = new Discord.MessageEmbed()
+        .setColor('BLURPLE')
+        .addField(
+            {  name: 'teste', value:'teste'}
+            )
 
 fs.readdirSync('./comandos').forEach(dirs => {
     const commands = fs.readdirSync(`./comandos/${dirs}`).filter(files => files.endsWith('.js'));
@@ -66,7 +71,8 @@ client.on('messageCreate', async (message) => {
     const args = message.content.slice(prefix.length).split(/ +/);
     const command = args.shift().toLowerCase();
     if(command === 'play' || 'p') {
-        message.channel.send(` A musica ${song} foi adicionada`)
+        emb = new Discord.MessageEmbed()
+        .setColor('')
         let queue = client.player.createQueue(message.guild.id);        
         await queue.join(message.member.voice.channel);       
         let song = await queue.play(args.join(' ')).catch(_ => 
@@ -161,8 +167,8 @@ client.on('message', message =>{
     const args = message.content.slice(prefix.length).split(/ +/);
     const command = args.shift().toLowerCase();
     
-    if(command === 'casd'){
-        message.channel.send(' Aqui está a lista de comandos\n cl: Mostra o que as classes do bot <@703043558483034223> faz\n ping: Manda uma mensagem escrita "pong".\n');
+    if(command === 'teste'){
+        message.channel.send(embt);
     }
 });
 
