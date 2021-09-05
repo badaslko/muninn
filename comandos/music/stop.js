@@ -12,10 +12,8 @@ module.exports = {
 
         if (!client.player.getQueue(message)) return message.channel.send(`${client.emotes.error} - Nenhuma musica tocando no momento!`);
         
-        
-        client.player.setRepeatMode(message, false);
-        const success =  guildQueue.stop();
-        this.execute(success)
+        guildQueue.stop();
+     
 
         if (success) message.channel.send(`${client.emotes.success} - A musica **parou** neste server!`);
     },

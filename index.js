@@ -95,7 +95,6 @@ client.on('messageCreate', async (message) => {
     }else if(command === 'skip') {
         guildQueue.skip();
     }else if(command === 'stop') {
-        message.channel.send('A musica foi interrompida').then
         guildQueue.stop();
     }else if(command === 'removeLoop') {
         guildQueue.setRepeatMode(RepeatMode.DISABLED); // or 0 instead of RepeatMode.DISABLED
