@@ -3,7 +3,7 @@ const fs = require('fs');
 const Discord = require('discord.js');
 const client = new Discord.Client({ intents: ["GUILDS", "GUILD_MEMBERS", "GUILD_MESSAGES", "GUILD_PRESENCES", "GUILD_VOICE_STATES"], disableMentions: 'everyone' });
 const prefix = '*'
-const { Player, Song } = require("discord-music-player");
+const { Player, Song, Queue } = require("discord-music-player");
 const player = new Player(client, {
     leaveOnEmpty: false, // This options are optional.
 });
@@ -78,9 +78,9 @@ client.on('messageCreate', async (message) => {
         await queue.join(message.member.voice.channel);       
         let song = await queue.play(args.join(' ')).catch(_ => {
             if(!guildQueue)
-                queue.stop();
-                message.channel.send(` A musica ${song} foi adicionada`)
+                queue.stop();                
         });
+        message.channel.send(` A musica ${song} foi adicionada`)
     }
     if(command === 'playlist') {
         let queue = client.player.createQueue(message.guild.id);
@@ -90,7 +90,8 @@ client.on('messageCreate', async (message) => {
                 queue.stop();
         });
     }
-    if(command === 'queue' || 'q'){      
+    if(command === 'queue' || 'q'){   
+        return guildQueue;
     }
 
     if(command === 'skip') {
