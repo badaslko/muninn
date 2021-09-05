@@ -78,9 +78,10 @@ client.on('messageCreate', async (message) => {
         let song = await queue.play(args.join(' ')).catch(_ => {
 
             if(!guildQueue)
-                queue.stop();                
+                queue.stop();       
+                message.channel.send(` A musica ${song} foi adicionada`)
+         
         });
-        message.channel.send(` A musica ${song} foi adicionada`).then() 
 
     }
     if(command === 'playlist') {
@@ -101,6 +102,7 @@ client.on('messageCreate', async (message) => {
 
     if(command === 'stop') {
         guildQueue.stop();
+        message.channel.send('A musica foi interrompida')
     }
 
     if(command === 'removeLoop') {
