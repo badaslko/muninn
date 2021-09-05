@@ -82,14 +82,8 @@ client.on('messageCreate', async (message) => {
         let song = await queue.playlist(args.join(' ')).catch(_ => {    
             if(!guildQueue)
                 queue.stop();
-        })  
-        const embs = new Discord.MessageEmbed()
-        .setColor('#5c0085')
-        .addFields(
-            { name: `${song}`, value: message.author}
-        )            
-
-        message.channel.send(`${song} foi adicionada por ${message.author}`)
+                message.channel.send(`${song} foi adicionada por ${message.author}`)
+        })
     }
     if(command === 'queue' || 'q'){   
         message.channel.send(guildQueue)
