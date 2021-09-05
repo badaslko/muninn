@@ -70,9 +70,7 @@ client.on('messageCreate', async (message) => {
 
     const args = message.content.slice(prefix.length).split(/ +/);
     const command = args.shift().toLowerCase();
-    if(command === 'play' || 'p') {
-        emb = new Discord.MessageEmbed()
-        .setColor('')
+    if(command === 'play' || 'p') {        
         let queue = client.player.createQueue(message.guild.id);        
         await queue.join(message.member.voice.channel);       
         let song = await queue.play(args.join(' ')).catch(_ => 
