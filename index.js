@@ -77,6 +77,7 @@ client.on('messageCreate', async (message) => {
             if(!guildQueue)
             queue.stop();
             }); 
+        message.channel.send(`${song} foi adicionada por ${message.author}`)
     }
     if(command === 'playlist') {
         let queue = client.player.createQueue(message.guild.id);
@@ -87,7 +88,6 @@ client.on('messageCreate', async (message) => {
         })
     }
     if(command === 'queue' || 'q'){   
-        message.channel.send(guildQueue)
     }
     if(command === 'skip') {
         guildQueue.skip();
