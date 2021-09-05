@@ -13,7 +13,7 @@ client.config = require('./config/bot');
 client.emotes = client.config.emojis;
 client.commands = new Discord.Collection();
 const embt = new Discord.MessageEmbed()
-        .setColor('#5c0085')
+        .setColor('#002a5a')
         .addFields(
             {  name: 'teste', value:'teste'}
             )
