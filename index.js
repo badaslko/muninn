@@ -12,11 +12,6 @@ client.player = player
 client.config = require('./config/bot');
 client.emotes = client.config.emojis;
 client.commands = new Discord.Collection();
-const embt = new Discord.MessageEmbed()
-        .setColor('#002a5a')
-        .addFields(
-            {  name: 'teste', value:'teste'}
-        );
 fs.readdirSync('./comandos').forEach(dirs => {
     const commands = fs.readdirSync(`./comandos/${dirs}`).filter(files => files.endsWith('.js'));
 
