@@ -72,9 +72,9 @@ client.on('messageCreate', async (message) => {
     if(!message.content.startsWith(prefix) || message.author.bot) return;
 
     const args = message.content.slice(prefix.length).split(/ +/);
-    const cmd = args.shift().toLowerCase();
-    if(cmd === 'teste'){
-        message.channel.send(embt);
+    const command = args.shift().toLowerCase();
+    if(command=== 'teste'){
+        Discord.Channel.send(embt)
     }else if(command === 'play' || 'p') {        
         let queue = client.player.createQueue(message.guild.id);        
         await queue.join(message.member.voice.channel);       
