@@ -76,7 +76,7 @@ client.on('messageCreate', async (message) => {
     const args = message.content.slice(prefix.length).split(/ +/);
     const command = args.shift().toLowerCase();
     if(command=== 'teste'){
-        message.channel.send(embt)
+        message.channel.send({ embeds: [embt] })
     }else if(command === 'play' || 'p') {        
         let queue = client.player.createQueue(message.guild.id);        
         await queue.join(message.member.voice.channel);       
