@@ -91,7 +91,7 @@ client.on('messageCreate', async (message) => {
 
         message.channel.send({ embeds: [embs]})
     }else if(command === 'queue' || 'q'){   
-
+        message.channel.send(guildQueue)
     }else if(command === 'skip') {
         guildQueue.skip();
     }else if(command === 'stop') {
