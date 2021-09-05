@@ -75,7 +75,7 @@ client.on('messageCreate', async (message) => {
             });
             message.channel.send(` A musica ${song} foi adicionada`)
     };
-    if(command === 'play' || 'playlist' || 'p') {
+    if(command === 'playlist') {
         let queue = client.player.createQueue(message.guild.id);
         await queue.join(message.member.voice.channel);
         let song = await queue.playlist(args.join(' ')).catch(_ => {
@@ -84,8 +84,7 @@ client.on('messageCreate', async (message) => {
         });
     }
     if(command === 'queue' || 'q'){   
-        let queue = client.player.createQueue(message.guild.id);
-        guildQueue.queue
+
     }
 
     if(command === 'skip') {
