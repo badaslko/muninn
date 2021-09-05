@@ -68,7 +68,8 @@ client.on('messageCreate', async (message) => {
     const command = args.shift().toLowerCase();
     if(command=== 'teste'){
         message.channel.send({ embeds: [embt] })
-    }else if(command === 'play' || 'p') {        
+    }
+    if(command === 'play' || 'p') {        
         let queue = client.player.createQueue(message.guild.id);        
         await queue.join(message.member.voice.channel);       
         let song = await queue.play(args.join(' ')).catch(_ => 
@@ -76,13 +77,13 @@ client.on('messageCreate', async (message) => {
             if(!guildQueue)
             queue.stop();
             }); 
-    }else if(command === 'playlist') {
+    }
+    if(command === 'playlist') {
         let queue = client.player.createQueue(message.guild.id);
         await queue.join(message.member.voice.channel);
         let song = await queue.playlist(args.join(' ')).catch(_ => {    
             if(!guildQueue)
                 queue.stop();
-                message.channel.send(`${song} foi adicionada por ${message.author}`)
         })
     }
     if(command === 'queue' || 'q'){   
@@ -92,7 +93,7 @@ client.on('messageCreate', async (message) => {
         guildQueue.skip();
     }
     if(command === 'stop') {
-        guildQueue.stop();
+        guildQueue.stop()
     }
     if(command === 'removeLoop') {
         guildQueue.setRepeatMode(RepeatMode.DISABLED); // or 0 instead of RepeatMode.DISABLED
