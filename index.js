@@ -90,39 +90,56 @@ client.on('messageCreate', async (message) => {
         )            
 
         message.channel.send({ embeds: [embs]})
-    }else if(command === 'queue' || 'q'){   
+    }
+    if(command === 'queue' || 'q'){   
         message.channel.send(guildQueue)
-    }else if(command === 'skip') {
+    }
+    if(command === 'skip') {
         guildQueue.skip();
-    }else if(command === 'stop') {
+    }
+    if(command === 'stop') {
         guildQueue.stop();
-    }else if(command === 'removeLoop') {
+    }
+    if(command === 'removeLoop') {
         guildQueue.setRepeatMode(RepeatMode.DISABLED); // or 0 instead of RepeatMode.DISABLED
-    }else if(command === 'toggleLoop') {
+    }
+    if(command === 'toggleLoop') {
         guildQueue.setRepeatMode(RepeatMode.SONG); // or 1 instead of RepeatMode.SONG
-    }else if(command === 'toggleQueueLoop') {
+    }
+    if(command === 'toggleQueueLoop') {
         guildQueue.setRepeatMode(RepeatMode.QUEUE); // or 2 instead of RepeatMode.QUEUE
-    }else if(command === 'setVolume') {
+    }
+    if(command === 'setVolume') {
         guildQueue.setVolume(parseInt(args[0]));
-    }else if(command === 'jump') {
+    }
+    if(command === 'jump') {
         guildQueue.seek(parseInt(args[0]) * 1000);
-    }else if(command === 'clearQueue') {
+    }
+    if(command === 'clearQueue') {
         guildQueue.clearQueue();
-    }else if(command === 'shuffle') {
+    }
+    if(command === 'shuffle') {
         guildQueue.shuffle();
-    }else if(command === 'getQueue') {
+    }
+    if(command === 'getQueue') {
         console.log(guildQueue);
-    }else if(command === 'getVolume') {
+    }
+    if(command === 'getVolume') {
         console.log(guildQueue.volume)
-    }else if(command === 'nowPlaying') {
+    }
+    if(command === 'nowPlaying') {
         console.log(`Now playing: ${guildQueue.nowPlaying}`);
-    }else if(command === 'pause') {
+    }
+    if(command === 'pause') {
         guildQueue.setPaused(true);
-    }else if(command === 'resume') {
+    }
+    if(command === 'resume') {
         guildQueue.setPaused(false);
-    }else if(command === 'remove') {
+    }
+    if(command === 'remove') {
         guildQueue.remove(parseInt(args[0]));
-    }else if(command === 'createProgressBar') {
+    }
+    if(command === 'createProgressBar') {
         const ProgressBar = guildQueue.createProgressBar();
         
         // [======>              ][00:35/2:20]
