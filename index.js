@@ -89,7 +89,7 @@ client.on('messageCreate', async (message) => {
             { name: `${song}`, value: message.author}
         )            
 
-        message.channel.send(`${song} foi adicionada por ${message.author}`))
+        message.channel.send(`${song} foi adicionada por ${message.author}`)
     }
     if(command === 'queue' || 'q'){   
         message.channel.send(guildQueue)
