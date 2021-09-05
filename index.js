@@ -79,8 +79,8 @@ client.on('messageCreate', async (message) => {
         let song = await queue.play(args.join(' ')).catch(_ => {
             if(!guildQueue)
                 queue.stop();
+                message.channel.send(` A musica ${song} foi adicionada`)
         });
-        message.channel.send(` A musica ${song} foi adicionada`)
     }
     if(command === 'playlist') {
         let queue = client.player.createQueue(message.guild.id);
