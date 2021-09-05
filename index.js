@@ -12,7 +12,7 @@ client.player = player
 client.config = require('./config/bot');
 client.emotes = client.config.emojis;
 client.commands = new Discord.Collection();
-embt = new Discord.MessageEmbed()
+const embt = new Discord.MessageEmbed()
         .setColor('BLURPLE')
         .setTitle('teste')
         .setDescription('teste')
