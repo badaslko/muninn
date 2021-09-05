@@ -90,9 +90,7 @@ client.on('messageCreate', async (message) => {
                 queue.stop();
         });
     }
-    if(command === 'queue' || 'q'){
-        this.queues = new discord_js_1.Collection();
-        this.client.on('voiceStateUpdate', (oldState, newState) => this._voiceUpdate(oldState, newState));
+    if(command === 'queue' || 'q'){      
     }
 
     if(command === 'skip') {
