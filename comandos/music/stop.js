@@ -15,6 +15,7 @@ module.exports = {
         
         client.player.setRepeatMode(message, false);
         const success =  guildQueue.stop();
+        this.execute(success)
 
         if (success) message.channel.send(`${client.emotes.success} - A musica **parou** neste server!`);
     },
