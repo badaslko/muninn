@@ -70,13 +70,11 @@ client.on('messageCreate', async (message) => {
         await queue.join(message.member.voice.channel);       
         let song = await queue.play(args.join(' ')).catch(_ => 
             {
-
             if(!guildQueue)
-            message.channel.send(` A musica ${song} foi adicionada`)
-                queue.stop();
+            queue.stop();
             });
-
-    }
+            message.channel.send(` A musica ${song} foi adicionada`)
+    };
     if(command === 'play' || 'playlist' || 'p') {
         let queue = client.player.createQueue(message.guild.id);
         await queue.join(message.member.voice.channel);
@@ -86,7 +84,8 @@ client.on('messageCreate', async (message) => {
         });
     }
     if(command === 'queue' || 'q'){   
-
+        let queue = client.player.createQueue(message.guild.id);
+        guildQueue.queue
     }
 
     if(command === 'skip') {
