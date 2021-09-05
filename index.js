@@ -36,6 +36,8 @@ client.once('ready', () => {
 });
 const { RepeatMode } = require('discord-music-player');
 const { discord } = require('./config/bot');
+const { channel, Channel } = require('diagnostics_channel');
+const { MessageChannel } = require('worker_threads');
 
 client.player
     // Emitted when channel was empty.
@@ -74,7 +76,7 @@ client.on('messageCreate', async (message) => {
     const args = message.content.slice(prefix.length).split(/ +/);
     const command = args.shift().toLowerCase();
     if(command=== 'teste'){
-        Discord.Channel.send(embt)
+       channel.send(embt)
     }else if(command === 'play' || 'p') {        
         let queue = client.player.createQueue(message.guild.id);        
         await queue.join(message.member.voice.channel);       
